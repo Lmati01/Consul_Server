@@ -6,11 +6,21 @@ spring:
     name: Gateway
   cloud:
     consul:
-      host: localhost
+      host: consul-container
       port: 8500
-      discovery: SERVICE-CLIENT
+      discovery:
+        enabled: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 
-
-eureka:
-  instance:
-    hostname: localhost
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

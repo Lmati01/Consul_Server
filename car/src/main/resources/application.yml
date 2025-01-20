@@ -6,16 +6,26 @@ spring:
     name: SERVICE-CAR
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/carservicedb?createDatabaseIfNotExist=true
+    url: jdbc:mysql://mysql-container1:3306/carservicedb?createDatabaseIfNotExist=true
     username: "root"
-    password: ""
+    password: "root"
   cloud:
     consul:
-      host: localhost
+      host: consul-container
       port: 8500
-      discovery: SERVICE-CLIENT
+      discovery:
+        enabled: true
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
 
