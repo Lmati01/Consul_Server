@@ -1,20 +1,31 @@
 server:
-  port: 8081
+  port: 8088
 
 spring:
   application:
     name: SERVICE-CLIENT
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql-container1:3306/clientservicedb?createDatabaseIfNotExist=true
+    url: jdbc:mysql://mysql:3306/Micro_ClientDB?createDatabaseIfNotExist=true
     username: "root"
     password: "root"
   cloud:
     consul:
       host: consul-container
       port: 8500
-      discovery: SERVICE-CLIENT
+      discovery:
+        enabled: true
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

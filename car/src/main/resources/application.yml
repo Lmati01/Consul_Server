@@ -6,7 +6,7 @@ spring:
     name: SERVICE-CAR
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql-container1:3306/carservicedb?createDatabaseIfNotExist=true
+    url: jdbc:mysql://mysql:3306/Micro_VoitureDB?createDatabaseIfNotExist=true
     username: "root"
     password: "root"
   cloud:
@@ -19,6 +19,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
 
 management:
   endpoints:
